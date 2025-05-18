@@ -1,6 +1,6 @@
 {
-    "name": "test_dummy_app",
-    "short_name": "test_dummy_app",
+    "name": "dev_ops",
+    "short_name": "dev_ops",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
