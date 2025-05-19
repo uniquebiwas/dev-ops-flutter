@@ -58,12 +58,12 @@ jobs:
             --testers "email1@example.com,email2@example.com"
 
 
-      - name: Distribute iOS IPA to Firebase
-        run: |
-          firebase appdistribution:distribute build/ios/iphoneos/app.ipa \
-            --app 1:427445952125:android:7761a2707cbef894149b14 \
-            --token "${{ secrets.FIREBASE_TOKEN }}" \
-            --testers "email1@example.com,email2@example.com"
+      # - name: Distribute iOS IPA to Firebase
+      #   run: |
+      #     firebase appdistribution:distribute build/ios/iphoneos/app.ipa \
+      #       --app 1:427445952125:android:7761a2707cbef894149b14 \
+      #       --token "${{ secrets.FIREBASE_TOKEN }}" \
+      #       --testers "email1@example.com,email2@example.com"
 
 
       - name: Upload to GitHub Releases
