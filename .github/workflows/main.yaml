@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build & Release
+    name: Build & Distribute
     runs-on: macos-latest
 
     steps:
@@ -48,21 +48,21 @@ jobs:
           zip -r app.ipa Payload
 
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        run: curl -sL https://firebase.tools | bash
 
-      - name: Distribute Android APK to Firebase App Distribution
+      - name: Distribute Android APK to Firebase
         run: |
-          firebase appdistribution:distribute build/app/outputs/apk/release/app-arm64-v8a-release.apk \
+          firebase appdistribution:distribute build/app/outputs/apk/release/app-armeabi-v7a-release.apk \
             --app 1:427445952125:android:7761a2707cbef894149b14 \
-            --groups "testers" \
-            --token ${{ secrets.FIREBASE_TOKEN }}
+            --token "${{ secrets.FIREBASE_TOKEN }}" \
+            --groups testers
 
-      - name: Distribute iOS IPA to Firebase App Distribution
+      - name: Distribute iOS IPA to Firebase
         run: |
           firebase appdistribution:distribute build/ios/iphoneos/app.ipa \
-            --app YOUR_FIREBASE_IOS_APP_ID \
-            --groups "testers" \
-            --token ${{ secrets.FIREBASE_TOKEN }}
+            --app 1:427445952125:android:7761a2707cbef894149b14 \
+            --token "${{ secrets.FIREBASE_TOKEN }}" \
+            --groups testers
 
       - name: Upload to GitHub Releases
         uses: ncipollo/release-action@v1
